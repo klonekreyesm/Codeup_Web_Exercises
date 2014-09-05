@@ -22,39 +22,55 @@
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
         culpa qui officia deserunt mollit anim id est laborum.
     </p>
+    <button id="btn1">Cool</button>
+    <button id="btn2">Blue</button>
+    <button id="btn3">Gray</button>
+    <button id="btn4">Done</button>
 
-    <script>
 
-        // get the main header element by id
+    <script>//create four buttons and use getElement wtih an addEventListener
+
+        
+        //when click button 1 listen for event to execute and then replace main header
+        var listener = function(event){
         var mainHeader = document.getElementById('main-header') ;
-
-        // set inner html of mainHeader to "JavaScript is Cool"
         mainHeader.innerHTML = ("Javascript is Cool");
+        }
+        var btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click', listener, false);
 
-        // get the sub header element by id
+        //when click button 2 listen for event to execute and then switch subheader to blue
+        var listener = function(event){
         var subHeader = document.getElementById('sub-header');
-
-        // set the text color of subHeader to blue
         subHeader.style['color']='blue';
-
-        //get all list items
-        var listItems = document.getElementsByTagName('li');
-
-        // set text color on every other list item to grey
+        }
+        var btn2 = document.getElementById('btn2');
+        btn2.addEventListener('click',listener,false);
+       
+        //when click button 3 listen for event to execute and then for every other li item, switch color to gray, first list item blue
+        var listener = function(event){
+        var listItems = document.getElementsByTagName('li');   
+        
         for (var i = 0; i < listItems.length; i++) {
             if(i % 2 == 0){
                 listItems[i].style['color'] = 'grey';
             }
         }
-        // set text color of li with dbid = 1 to blue
         listItems[0].style['color']='blue';
-
-         
-        // get all elements with class name sub-paragraph
-        var subParagraphs = document.getElementsByClassName('sub-paragraph');
+        }
+        var btn3 = document.getElementById('btn3');
+        btn3.addEventListener('click',listener,false);
         
-        subParagraphs[0].innerHTML = "Mission Accomplished!";
-        // change the text in the first sub paragraph to "Mission Accomplished!"
+        //when click button 4 listen for even to execute and then change paragraph text to "Mission Accomplished"
+        var listener = function(event){
+        var subParagraphs = document.getElementsByClassName('sub-paragraph');  
+        subParagraphs[0].innerHTML = "Mission Accomplished!"; 
+        }
+        var btn4 = document.getElementById('btn4');
+        btn4.addEventListener('click', listener, false);
+         
+      
+
 
     </script>
 
