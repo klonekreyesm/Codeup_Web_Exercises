@@ -34,16 +34,16 @@ console.log('Removing "Pluto" from the end of the planets array.');
 	console.log(planets);
 
 console.log('Finding and logging the index of "Earth" in the planets array.');
-	var index = planets.indexOf("Earth");
+	var Earthindex = planets.indexOf("Earth");
 	console.log("The index of Earth is " + index);
 
 console.log('Using splice to remove the planet after Earth.');
-	planets.splice(planets.indexOf("Earth")+1,1);
+	var afterEarth = planets.splice(planets.indexOf("Earth")+1,1);
 	console.log(planets);
 	
 
 console.log('Using splice to add back the planet after Earth.');
-	planets.splice(planets.indexOf("Earth")+1,0,"Mars");
+	planets.splice(earthIndex+1,0,afterEarth[0]);
 	console.log(planets);
 	
 

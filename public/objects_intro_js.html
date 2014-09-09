@@ -14,8 +14,9 @@
 
 
 	// Add a say hello method to the person object that alerts hello using the firstName and lastName properties
+	//Use 'this' only when inside the function in reference to the current object
 	person.sayHello = function () {
-	    alert('Hello, from: ' + person.firstName + " " + person.lastName);
+	    alert('Hello, from: ' + this.firstName + " " + this.lastName);
 	};
 
 	// Say hello from the person object.
