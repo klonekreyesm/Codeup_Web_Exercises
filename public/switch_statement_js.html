@@ -2,44 +2,39 @@
 <head>
     <title>External JS</title>
 </head>
-	<body>
-    	<script>
-
-var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-var color = colors[Math.floor(Math.random()*colors.length)];
-
-var favorite = 'orange'; 
-var message, myfavorite;
-// todo: create a case statement that will handle every color except indigo and violet
-// todo: when a color is encountered log a message that tells the color, and an object of that color
-    
-		switch (color){
-			case 'red':
-				message = color + " is the color of an apple.";
-				break;
-			case 'orange':
-					message = color + " is the color of a tiger. rawr.";
-					break;
-			case 'yellow':
-					message = color + " is the color of a banana.";
-					break;
-			case 'green':
-					message = color + " is the color of a kiwi.";
-					break;
-			case 'blue':
-					message = color + " is the color of the sky.";
-					break;
-			// todo: create a default case that will catch indigo and violet
-			default:
-				message = "I do not know anything about the color " + color + ".";
-			}
-
-		console.log(message);
-		// todo: Using the ternary operator, conditionally log a statement that
-		// says whether the random color matches your favorite color.
-		myfavorite=(color==favorite) ? "OH-EM-GEE, THIS COLOR IS MY FAVORITE!!":"";
-		console.log(myfavorite);
-
-		</script>
-	</body>
+    <body>
+    <script>
+    var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+    var color = colors[Math.floor(Math.random()*colors.length)];
+    var favorite = 'orange'; 
+    var message, myfavorite;
+    // case statement that will handle every color except indigo and violet
+    // when a color is encountered log a message that tells the color, and an object of that color
+        switch (color) {
+            case 'red':
+                message = color + " is the color of an apple.";
+                break;
+            case 'orange':
+                    message = color + " is the color of a tiger. rawr.";
+                    break;
+            case 'yellow':
+                    message = color + " is the color of a banana.";
+                    break;
+            case 'green':
+                    message = color + " is the color of a kiwi.";
+                    break;
+            case 'blue':
+                    message = color + " is the color of the sky.";
+                    break;
+            //a default case that will catch indigo and violet
+            default:
+                message = "I do not know anything about the color " + color + ".";
+            }
+        console.log(message);
+        // Using the ternary operator, conditionally log a statement that
+        // says whether the random color matches your favorite color.
+        myfavorite = (color == favorite) ? "OH-EM-GEE, THIS COLOR IS MY FAVORITE!!":"";
+        console.log(myfavorite);
+    </script>
+    </body>
 </html>
