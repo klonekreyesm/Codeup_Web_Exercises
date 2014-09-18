@@ -1,28 +1,23 @@
 
 <html>
 <head>
-	<title>Intro to Objects</title>
+    <title>Intro to Objects</title>
 </head>
-<body>
+    <body>
+    <script>
+    // Create person object with firstName and lastName properties:set to your first and last name
+    var person = {};
+        person.firstName = "Mary";
+        person.lastName = "Klonek";
+    
+    // Add a say hello method to the person object that alerts hello using the firstName and lastName properties
+    //Use 'this' only when inside the function in reference to the current object
+    person.sayHello = function () {
+        alert('Hello, from: ' + this.firstName + " " + this.lastName);
+    };
 
-
-	<script>
-	// Create person object with firstName and lastName properties:set to your first and last name
-	var person = {};
-	person.firstName = "Mary";
-	person.lastName = "Klonek";
-
-
-	// Add a say hello method to the person object that alerts hello using the firstName and lastName properties
-	//Use 'this' only when inside the function in reference to the current object
-	person.sayHello = function () {
-	    alert('Hello, from: ' + this.firstName + " " + this.lastName);
-	};
-
-	// Say hello from the person object.
-	person.sayHello();
-
-
-	</script>
-</body>
+    // Say hello from the person object.
+    person.sayHello();
+    </script>
+    </body>
 </html>
