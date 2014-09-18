@@ -1,13 +1,12 @@
 <html>
-<head>
-    <title>File Upload</title>
-</head>
-<body>
+    <head>
+        <title>File Upload</title>
+    </head>
+        <body>
 
-    <?php
+            <?php
             // Verify there were uploaded files and no errors
-            if (count($_FILES) > 0 && $_FILES['file1']['error'] === UPLOAD_ERR_OK)
-            {
+            if (count($_FILES) > 0 && $_FILES['file1']['error'] === UPLOAD_ERR_OK) {
                 // Set the destination directory for uploads--ends with forward slash to concatenate the file upload name
                 $upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
                 // Grab the filename from the uploaded file by using basename
@@ -19,24 +18,21 @@
             }
 
             // Check if we saved a file
-            if (isset($saved_filename)) 
-            {
+            if (isset($saved_filename)) {
                 // If we did, show a link to the uploaded file
                 echo "<p>You can download your file <a href='/uploads/{$filename}'>here</a>.</p>";
             }
-    ?>
+            ?>
 
         <h1>Upload File</h1>
-
-        <form method="POST" enctype="multipart/form-data" action="/file-upload.php">
-            <p>
-                <label for="file1">File to upload: </label>
-                <input type="file" id="file1" name="file1">
-            </p>
-            <p>
-                <input type="submit" value="Upload">
-            </p>
-        </form>
-
-</body>
+            <form method="POST" enctype="multipart/form-data" action="/file-upload.php">
+                <p>
+                    <label for="file1">File to upload: </label>
+                    <input type="file" id="file1" name="file1">
+                </p>
+                <p>
+                    <input type="submit" value="Upload">
+                </p>
+            </form> 
+        </body>
 </html>
