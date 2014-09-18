@@ -1,48 +1,41 @@
 <html>
 <head>
-	<title></title>
 </head>
-<body>
+    <body>
 	<script>
-// create a circle object
-var circle = {
-    
-	radius: 3,
-	area: '';
+    // create a circle object
+    var circle = {
+    	           radius: 3,
+    	           area: '';
 
-    getArea: function () {
-        //finish this method
-        return Math.PI * Math.pow(this.radius,2);
-        
-    },
+                    getArea: function () {
+                        //finish this method
+                        return Math.PI * Math.pow(this.radius,2);   
+                    },
 
+                    getPerimeter: function() {
+                    	return 2 * Math.PI * this.radius;
+                    },
 
-    getPerimeter: function(){
-    	return 2 * Math.PI * this.radius;
+                    logInfo: function (round) {
+                    	if(round) {
+                    		var area = Math.round(this.getArea());
+                    	}else {
+                    		this.area = this.getArea();
+                    	}
+                        // complete this method. if round is true, round the result to the nearest integer.
+                        console.log('Area of a circle with radius: ' + this.radius + ', is: ' + this.area);
+                    }
+                };
+    // log info about the circle
+    circle.logInfo(false);
+    circle.logInfo(true);
 
-    },
+    // Change the radius of the circle to 5.
 
-
-    logInfo: function (round) {
-    	if(round){
-    		var area = Math.round(this.getArea());
-    	}else{
-    		this.area = this.getArea();
-    	}
-        // complete this method. if round is true, round the result to the nearest integer.
-        console.log('Area of a circle with radius: ' + this.radius + ', is: ' + this.area);
-    }
-};
-
-// log info about the circle
-circle.logInfo(false);
-circle.logInfo(true);
-
-// Change the radius of the circle to 5.
-
-// log info about the circle
-circle.logInfo(false);
-circle.logInfo(true);
-
+    // log info about the circle
+    circle.logInfo(false);
+    circle.logInfo(true);
+    </script>
 </body>
 </html>
