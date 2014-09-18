@@ -2,11 +2,11 @@
 <head>
 </head>
     <body>
-	<script>
+    <script>
     // create a circle object
     var circle = {
-    	           radius: 3,
-    	           area: '';
+                   radius: 3,
+                   area: '';
 
                     getArea: function () {
                         //finish this method
@@ -14,15 +14,15 @@
                     },
 
                     getPerimeter: function() {
-                    	return 2 * Math.PI * this.radius;
+                        return 2 * Math.PI * this.radius;
                     },
 
                     logInfo: function (round) {
-                    	if(round) {
-                    		var area = Math.round(this.getArea());
-                    	}else {
-                    		this.area = this.getArea();
-                    	}
+                        if(round) {
+                            var area = Math.round(this.getArea());
+                        }else {
+                            this.area = this.getArea();
+                        }
                         // complete this method. if round is true, round the result to the nearest integer.
                         console.log('Area of a circle with radius: ' + this.radius + ', is: ' + this.area);
                     }
