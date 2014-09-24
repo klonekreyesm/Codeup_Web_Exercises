@@ -7,24 +7,34 @@ $dbc = new PDO('mysql:host=127.0.0.1;dbname=codeup_pdo_test_db','mkr', 'codeupro
 // Tell PDO to throw exceptions on error
 $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if($_POST){
-    $stmt = $dbc->prepare('INSERT INTO ToDo(item) VALUES (:item)'); 
 
-    $stmt->bindValue(':item', $_POST['additem'], PDO::PARAM_STR);
-  $stmt->execute();
+if(isset($_POST['submit'])){
+	  $stmt = $dbc->prepare('INSERT INTO todo(item) VALUES (:item)'); 
+
+	  $stmt->bindValue(':item', $_POST['additem'], PDO::PARAM_STR);
+	  $stmt->execute();
+	}
+
+
+if(isset($_POST['done'])){
+	$checkbox = $_POST['checkbox'];
+	
+		for($i=0;$i<count($_POST['checkbox']);$i++){
+
+		$del_id = $checkbox[$i];
+		$stmt = $dbc->prepare("DELETE FROM todo WHERE id='$del_id'");
+		$stmt->bindValue(':id', $del_id, PDO::PARAM_INT);
+
+		$stmt->execute();
+	
+	}
 
 }
 
-if(isset($_POST['remove']) && 
-   $_POST['remove'] == 'Yes') {
-
-
-}
-
-
-$stmt = $dbc->prepare("SELECT * FROM ToDo LIMIT 10");
+$stmt = $dbc->prepare("SELECT * FROM todo LIMIT 10");
 $stmt->execute();
 $items =$stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 ?>
@@ -55,29 +65,23 @@ $items =$stmt->fetchAll(PDO::FETCH_ASSOC);
     <body style = "padding: 30px">
         <h1>Things to Do</h1>
 
-        <form action="todolist.php" method="post">
+        <form action="todolist.php" method="POST">
             <div><label class="checkbox-inline">
                 <!--loop through array $items and output key => value pairs-, refactor to alternate syntax-->
                <?php foreach ($items as $item) : ?>
-                    <li> <input type="checkbox" name ="doneitems"id="" ><?= $item['id'] . " " . $item['item'] ?></li>
+                    <li> <input name="checkbox[]" type="checkbox" id="checkbox[]" value="<? echo $item['id']; ?>"><?= $item['item'] ?></li>
                 <?php endforeach;?>
             </label> </div>
-            <button type="btn-primary" value="remove">DONE</button>
+            <button type="btn-primary" name="done" value="done">DONE</button>
         </form>
             <!--Form to allow items to be added --> 
-         
-
-
-
-
-
-
+  
 
         <h4>Add Item to the List</h4>
-        <form name ="add item" method="POST" action="todolist.php" >
+        <form method="POST" action="todolist.php" >
             <p>
             <input type="text" id="newitem" name="additem" placeholder="item here">
-            <button value="submit"> + </button>
+            <button name="submit" value="submit"> + </button>
             </form>
             </p>
 
