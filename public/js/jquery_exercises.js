@@ -1,4 +1,4 @@
 $('document').ready(function() {
-            var contents = $('#list_item2');
-            alert(contents);
+            $('.codeup').css('border-style', 'solid');
+            $('#list').css('border-color', 'red');
         });
