@@ -1,0 +1,273 @@
+<html lang="en">
+
+<head>
+
+  <title>Whack-A-Mole</title>
+  <script type="text/javascript" src="jquery.js"></script>
+  
+  <style type="text/css" media="screen">
+     body {
+      height:100%;
+      margin:0;
+      padding:0;
+      width:100%;
+    }
+    .mole{
+            height: 98px;
+            width: 130px;
+            display: none;
+            position: absolute;
+            
+            float: left;
+        }
+        .hole{
+            border: 1px;
+            height: 103px;
+            width: 135px;
+            padding: 0px;
+            border: white;
+            background-color: transparent;
+            float: left;}
+  
+    #game_window {
+      background:url(img/background.jpg) 50% 0;
+      background-size: cover;                      
+      background-repeat: no-repeat;
+      background-position: center center;
+      border:1px solid #fafafa;
+      cursor:crosshair;
+      height:500px;
+      margin:40px auto 20px;
+      position:relative;
+      width:500px;
+      padding-left: 50px;
+      padding-top: 110px;
+    }
+    #info { 
+      margin:0 auto 20px;
+      width:500px;
+      text-align:right;
+    }
+    #info_score {
+      float:left;
+    }
+   
+    .display, .message {
+      background:#222;
+      color:#fafafa;
+      cursor:pointer;cursor:hand;
+      display:none;
+      font-weight:bold;
+      text-align:center;
+      text-transform:uppercase;
+      width:100%;
+      z-index:3;
+    }
+    .display {
+      line-height:1.4;
+      padding:14px 0;
+      margin-top:28px;
+    }
+    #start_button{
+      line-height:2.0;
+      position: float;
+    
+      margin-left: 150px;
+       
+    }
+   
+    #game_over {
+      padding-top:14px;
+      
+    }
+    #score_table {
+      
+    }
+    #high_score {
+      cursor:default;
+    }
+    
+
+  </style>
+  
+  
+  <script>
+  
+    
+    
+   // $(document).ready(function(){
+      
+    //   // show start message
+      
+    //   $('#start_button').click(function(){
+        
+    //     $('#start_button').hide();
+       
+    //   });     
+      
+    // });
+    
+  </script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+  <div id="game_window">
+        <div class="hole" id="hole1">
+            <img id="mole1" class="mole" src="/img/mole.png" alt="mole1">
+        </div>
+        <div class="hole" id="hole2">
+            <img id="mole2" class="mole" src="/img/mole.png" alt="mole2">
+        </div>
+        <div class="hole" id="hole3">
+            <img id="mole3" class="mole" src="/img/mole.png" alt="mole3">
+        </div>
+        <div class="hole" id="hole4" style="clear:left">
+            <img id="mole4" class="mole" src="/img/mole.png" alt="mole4">
+        </div>
+        <div class="hole" id="hole5" >
+            <img id="mole5" class="mole" src="/img/mole.png" alt="mole5">
+        </div>
+        <div class="hole" id="hole6" >
+            <img id="mole6" class="mole" src="/img/mole.png" alt="mole6">
+        </div>
+        <div class="hole" id="hole7" style="clear:left">
+            <img id="mole7" class="mole" src="/img/mole.png" alt="mole7">
+        </div>
+        <div class="hole" id="hole8">
+            <img id="mole8"  class="mole" src="/img/mole.png" alt="mole8">
+        </div>
+        <div class="hole" id="hole9">
+            <img id="mole9" class="mole" src="/img/mole.png" alt="mole9">
+        </div>
+    
+    
+    <a href="#" class="btn btn-success btn-lg" id="start_button"><span class="glyphicon glyphicon-heart-empty"></span> Start </a> 
+
+    
+    <form id="high_score" class="message">
+    
+      <fieldset id="high_score_field">
+      
+        <label for="player_name">You got a high score! Enter your name:</label><br>
+        <input type="text" id="player_name" name="player_name" maxlength="40">&nbsp;
+        <input type="submit" value="Enter">
+        
+      </fieldset>
+      
+    </form>
+    
+    <div id='score_table' class='display'>
+    
+      <p id='game_over'>Game over. Click to restart.</p>
+    
+    </div>
+    
+  </div>
+  
+  <div id="info">
+  
+    <div id="info_score">Score: <span id="score">0</span></div>
+    
+    By Mary Klonek-Reyes
+    
+  </div>
+
+<!--logic -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        //constants
+        const MIN = 1; // first box
+        const MAX = 9; // last box
+        const RUNTIME = 10000; //runtime for app 10 seconds
+        //variables
+        var random_mole_number = 0; //assign random number
+        var score = 0; //keeps track of score
+        var count = 0; //start loop index
+        var max_count = 10; //max loop index
+        var interval = 1000; // interval time is 1 second
+        var high_score = 0;
+
+        // Returns a random integer between min and max
+        // Using Math.round() will give you a non-uniform distribution!
+        function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        } // end of getRandomInt
+
+        //fade random mole in, new game
+        function new_mole() {
+            //get a random number
+            random_mole_number = getRandomInt(MIN, MAX);
+            $(('#mole'+random_mole_number)).fadeIn(1000);
+            $(('#mole'+random_mole_number)).fadeOut(0500);
+        } //end of new_mole
+
+        //when you click a mole add to score
+        $('.mole').click(function(event) {
+            event.preventDefault();
+            score += 10;
+            $(this).hide();
+            $('#info_score').text('Score: '+score);
+        }); //end of click on mole
+
+        //start game only when you click the start button
+        $('#start_button').click(function(event) {
+          event.preventDefault();
+            //disable the start button
+            $('#start_button').hide();
+            // get the start timestamp
+            var start = Date.now();
+            //refresh the score
+            $('#info_score').text('Score: '+score);
+
+            intervalId = setInterval(function () {
+                if (count >= max_count || elapsed >= RUNTIME ) {
+                    clearInterval(intervalId);
+                    //hide all moles
+                    $('.mole').hide();
+                    //check to see if score is the high_score
+                    if(score > high_score){
+                        high_score = score;
+                        $('#high_score').text('High Score: '+high_score);
+                        alert('New High score: ' + high_score);
+                    }
+                    //clear timer, counter, score
+                    elapsed = 0;
+                    count = 0;
+                    score = 0;
+                    alert('GAME OVER');
+                    $('#start_button').attr("disabled", false);
+                } //end of if
+                else {
+                    // get the end timestamp
+                    var end = Date.now();
+                    // calculate the elapsed time in milliseconds
+                    var elapsed = end - start;
+                    //elapsed = (elapsed)
+                    var time_display = Math.round((RUNTIME - elapsed) / 1000);
+                    $('#timer').text('TIME: ' + time_display + ' sec');
+                    count++; //increment count
+                    new_mole(); // create new mole
+                } //end of else
+            }, interval);
+        }); //end of start button
+    </script>
+
+
+
+
+</body>
+
+
+</html>
+
